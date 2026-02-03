@@ -8,6 +8,13 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
+vim.pack.add({ "https://github.com/navarasu/onedark.nvim" })
+require("onedark").setup({
+  -- style = "warmer",
+  transparent = "true"
+})
+require('onedark').load()
+
 -- Basic settings
 vim.opt.number = true          -- Line numbers
 vim.opt.relativenumber = false -- Relative line numbers
@@ -118,3 +125,4 @@ require('plugins.blink-cmp')
 require('plugins.lspconfig')
 require('plugins.gitsigns')
 require('plugins.snacks')
+require('plugins.smear-cursor')

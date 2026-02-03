@@ -8,6 +8,10 @@
       "rev": "572f566",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "gen.nvim": {
+      "rev": "c8e1f57",
+      "src": "https://github.com/David-Kunz/gen.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "20ad441",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
@@ -52,6 +56,14 @@
     "nvim-web-devicons": {
       "rev": "8dcb311",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "onedark.nvim": {
+      "rev": "6c10964",
+      "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "smear-cursor.nvim": {
+      "rev": "ab3741e",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
     },
     "snacks.nvim": {
       "rev": "dec29f5",

@@ -6,7 +6,7 @@ vim.pack.add(
 require('blink.cmp').setup({
   keymap = { preset = 'default' },
   snippets = {
-    preset = "default" ,
+    preset = "default",
   },
   cmdline = { enabled = false },
   completion = {
@@ -25,4 +25,3 @@ require('blink.cmp').setup({
   },
   signature = { enabled = true }
 })
-

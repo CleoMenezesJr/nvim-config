@@ -9,6 +9,7 @@ local vue_plugin_path = vue_ls_path .. "/node_modules/@vue/language-server"
 -- Server configs
 local servers = {
   lua_ls = {},
+  -- vue_ls = {},
   ts_ls = {
     init_options = {
       plugins = {
@@ -21,7 +22,21 @@ local servers = {
     },
     filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
   },
-  eslint = {}
+  eslint = {},
+  tailwindcss = { filetypes = { "vue" } },
+  cssls = {},
+  jsonls = {},
+  html = {
+    on_attach = function(client, bufnr)
+      local ft = vim.bo[bufnr].filetype
+
+      if ft == "vue" then
+        client.server_capabilities.documentFormattingProvider = false
+      end
+    end,
+    filetypes = { "vue" }
+  },
+  ruff = {},
 }
 
 -- Setup servers
@@ -30,7 +45,7 @@ for server, config in pairs(servers) do
 
   vim.lsp.enable(server)
   if config then
-      vim.lsp.config(server, config)
+    vim.lsp.config(server, config)
   end
 end
 
@@ -39,7 +54,7 @@ vim.lsp.inlay_hint.enable()
 vim.lsp.inline_completion.enable()
 vim.lsp.on_type_formatting.enable()
 vim.diagnostic.config({
-  -- virtual_text = true,
+  virtual_text = true,
   -- virtual_lines = true,
   underline = true
 })

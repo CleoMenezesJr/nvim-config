@@ -70,6 +70,15 @@ vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
   end,
 })
 
+-- Format on save
+vim.api.nvim_create_augroup('AutoFormatting', {})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = 'AutoFormatting',
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
 -- Return to last edit position when opening files

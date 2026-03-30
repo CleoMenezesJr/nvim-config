@@ -3,7 +3,8 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.files",
   "https://github.com/nvim-mini/mini.clue",
   "https://github.com/nvim-mini/mini.pairs",
-  "https://github.com/nvim-mini/mini.statusline"
+  "https://github.com/nvim-mini/mini.statusline",
+  "https://github.com/nvim-mini/mini.map"
 })
 
 -- ============================================================================
@@ -21,10 +22,16 @@ vim.keymap.set("n", "-", "<CMD>lua MiniFiles.open()<CR>", { desc = "Open Files" 
 require('mini.pairs').setup()
 
 -- ============================================================================
--- MINI FILES
+-- MINI STATUSLINE
 -- ============================================================================
 
 require('mini.statusline').setup()
+
+-- ============================================================================
+-- MINI MAP
+-- ============================================================================
+
+require('mini.map').setup()
 
 -- ============================================================================
 -- MINI CLUE

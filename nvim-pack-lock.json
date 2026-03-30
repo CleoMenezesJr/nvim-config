@@ -36,6 +36,10 @@
       "rev": "dce9a4e",
       "src": "https://github.com/nvim-mini/mini.files"
     },
+    "mini.map": {
+      "rev": "fafb77ad3be300393793ebc434c6491a6ba6eea2",
+      "src": "https://github.com/nvim-mini/mini.map"
+    },
     "mini.pairs": {
       "rev": "b316e68",
       "src": "https://github.com/nvim-mini/mini.pairs"

@@ -96,6 +96,31 @@ vim.opt.modifiable = true               -- Allow buffer modifications
 vim.opt.encoding = "UTF-8"              -- Set encoding
 vim.o.confirm = true                    -- Prevent make quit without save
 
+-- UI2: no more press Enter
+require("vim._core.ui2").enable {
+  enable = true,
+  msg = { -- Options related to the message module.
+    ---@type 'cmd'|'msg' Default message target, either in the
+    ---cmdline or in a separate ephemeral message window.
+    ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
+    ---or table mapping |ui-messages| kinds and triggers to a target.
+    targets = "cmd",
+    cmd = {           -- Options related to messages in the cmdline window.
+      height = 0.5,   -- Maximum height while expanded for messages beyond 'cmdheight'.
+    },
+    dialog = {        -- Options related to dialog window.
+      height = 0.5,   -- Maximum height.
+    },
+    msg = {           -- Options related to msg window.
+      height = 0.5,   -- Maximum height.
+      timeout = 4000, -- Time a message is visible in the message window.
+    },
+    pager = {         -- Options related to message window.
+      height = 0.5,   -- Maximum height.
+    },
+  },
+}
+
 -- Cursor settings
 vim.opt.guicursor =
 "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"

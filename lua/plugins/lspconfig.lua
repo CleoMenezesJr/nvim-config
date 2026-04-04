@@ -37,6 +37,9 @@ local servers = {
     filetypes = { "vue" }
   },
   ruff = {},
+  docker_language_server = {
+    filetypes = { 'dockerfile', 'yaml.docker-compose' },
+  },
 }
 
 -- Setup servers

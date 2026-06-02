@@ -16,7 +16,7 @@ require('mini.files').setup()
 vim.keymap.set("n", "-", "<CMD>lua MiniFiles.open()<CR>", { desc = "Open Files" })
 
 -- ============================================================================
--- MINI FILES
+-- MINI PAIRS
 -- ============================================================================
 
 require('mini.pairs').setup()
@@ -32,6 +32,45 @@ require('mini.statusline').setup()
 -- ============================================================================
 
 require('mini.map').setup()
+
+local augroup = vim.api.nvim_create_augroup("MiniMapAutoHide", { clear = true })
+
+local map_hidden_by_exclude = false
+
+-- TermOpen fires AFTER WinEnter when using Snacks (window is created first, then
+-- the terminal process starts). So we close the map here directly rather than
+-- relying on WinEnter to see the flag in time.
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = augroup,
+  callback = function(args)
+    vim.b[args.buf].minimap_disable = true
+    map_hidden_by_exclude = true
+    MiniMap.close()
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup,
+  pattern = "codecompanion",
+  callback = function(args)
+    vim.b[args.buf].minimap_disable = true
+    map_hidden_by_exclude = true
+    MiniMap.close()
+  end,
+})
+
+vim.api.nvim_create_autocmd("WinEnter", {
+  group = augroup,
+  callback = function()
+    if vim.b.minimap_disable then
+      map_hidden_by_exclude = true
+      MiniMap.close()
+    elseif map_hidden_by_exclude then
+      map_hidden_by_exclude = false
+      MiniMap.open()
+    end
+  end,
+})
 
 -- ============================================================================
 -- MINI CLUE

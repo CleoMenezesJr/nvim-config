@@ -44,7 +44,7 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
--- Better J behavior
+-- Better J behavior (saves mark z, joins, restores cursor to avoid jump)
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 -- Quick config editing

@@ -4,6 +4,14 @@
       "rev": "327fff9",
       "src": "https://github.com/saghen/blink.cmp"
     },
+    "claudecode.nvim": {
+      "rev": "781f3ab6c17f73e11794a651758275566b2fb167",
+      "src": "https://github.com/coder/claudecode.nvim"
+    },
+    "codecompanion.nvim": {
+      "rev": "57989aca2e92083b16a2500ad47f285d82d5c43b",
+      "src": "https://github.com/olimorris/codecompanion.nvim"
+    },
     "friendly-snippets": {
       "rev": "572f566",
       "src": "https://github.com/rafamadriz/friendly-snippets"
@@ -64,6 +72,10 @@
     "onedark.nvim": {
       "rev": "6c10964",
       "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "smear-cursor.nvim": {
       "rev": "ab3741e",

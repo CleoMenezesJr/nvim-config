@@ -2,19 +2,6 @@
 -- OPTIONS
 -- ============================================================================
 
--- Theme & transparency
--- vim.cmd.colorscheme("unokai")
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-
-vim.pack.add({ "https://github.com/navarasu/onedark.nvim" })
-require("onedark").setup({
-  -- style = "warmer",
-  transparent = "true"
-})
-require('onedark').load()
-
 -- Basic settings
 vim.opt.number = true          -- Line numbers
 vim.opt.relativenumber = false -- Relative line numbers
@@ -142,6 +129,7 @@ vim.opt.splitright = true -- Vertical splits go right
 require('config.keymap')
 require('config.autocmd')
 
+require('plugins.theme')
 require('plugins.lazydev')
 require('plugins.nvim-treesitter')
 require('plugins.mini')

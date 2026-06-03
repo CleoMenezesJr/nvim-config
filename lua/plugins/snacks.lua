@@ -41,7 +41,6 @@ vim.keymap.set("n", "<leader><space>", function() picker.smart() end, { desc = "
 vim.keymap.set("n", "<leader>,", function() picker.buffers() end, { desc = "Buffers" })
 vim.keymap.set("n", "<leader>/", function() picker.grep() end, { desc = "Grep" })
 vim.keymap.set("n", "<leader>:", function() picker.command_history() end, { desc = "Command History" })
-vim.keymap.set("n", "<leader>n", function() picker.notifications() end, { desc = "Notification History" })
 -- vim.keymap.set("n", "<leader>e", function() Snacks.explorer() end, { desc = "File Explorer" })
 
 -- find

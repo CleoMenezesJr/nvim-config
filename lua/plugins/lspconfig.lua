@@ -55,7 +55,6 @@ end
 -- LSP config
 vim.lsp.inlay_hint.enable()
 vim.lsp.inline_completion.enable()
-vim.lsp.on_type_formatting.enable()
 vim.diagnostic.config({
   virtual_text = true,
   -- virtual_lines = true,

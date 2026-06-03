@@ -6,7 +6,7 @@
 vim.opt.number = true          -- Line numbers
 vim.opt.relativenumber = false -- Relative line numbers
 vim.opt.cursorline = true      -- Highlight current line
-vim.opt.wrap = true            -- Don't wrap lines
+vim.opt.wrap = true            -- Wrap lines
 vim.opt.scrolloff = 10         -- Keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8      -- Keep 8 columns left/right of cursor
 vim.g.have_nerd_font = true    -- Make Nerd Font aware
@@ -31,7 +31,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Search settings
 vim.opt.ignorecase = true -- Case insensitive search
 vim.opt.smartcase = true  -- Case sensitive if uppercase in search
-vim.opt.hlsearch = true   -- Don't highlight search results
+vim.opt.hlsearch = true   -- Highlight search results
 vim.opt.incsearch = true  -- Show matches as you type
 -- vim.o.inccommand = 'split' -- Show search and change in split view
 

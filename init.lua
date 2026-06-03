@@ -53,7 +53,7 @@ vim.opt.synmaxcol = 300                           -- Syntax highlighting limit
 vim.opt.winborder = 'rounded'                     -- Set the default border for all floating windows
 
 -- Performance improvements
-vim.opt.redrawtime = 10000
+vim.opt.redrawtime = 4000
 vim.opt.maxmempattern = 20000
 
 -- File handling

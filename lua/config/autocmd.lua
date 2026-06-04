@@ -86,6 +86,35 @@ vim.api.nvim_create_autocmd("TermClose", {
   end,
 })
 
+-- Auto-update plugins on startup; ask to restart if any were updated
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    vim.schedule(function()
+      local n_updated = 0
+      local listener = vim.api.nvim_create_autocmd("PackChanged", {
+        callback = function(ev)
+          if ev.data.kind == "update" then
+            n_updated = n_updated + 1
+          end
+        end,
+      })
+      vim.pack.update(nil, { force = true })
+      pcall(vim.api.nvim_del_autocmd, listener)
+      if n_updated > 0 then
+        local choice = vim.fn.confirm(
+          ("Updated %d plugin(s). Restart Neovim?"):format(n_updated),
+          "&Yes\n&No",
+          2
+        )
+        if choice == 1 then
+          vim.cmd("restart")
+        end
+      end
+    end)
+  end,
+})
+
 -- showing lsp progress with nvim_echo and LspProgress
 vim.api.nvim_create_autocmd("LspProgress", {
   callback = function(ev)

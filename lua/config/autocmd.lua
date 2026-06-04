@@ -101,19 +101,23 @@ vim.api.nvim_create_autocmd("VimEnter", {
       })
       vim.pack.update(nil, { force = true })
       pcall(vim.api.nvim_del_autocmd, listener)
-      vim.cmd("echo ''")
-      if #updated > 0 then
-        local choice = vim.fn.confirm(
-          ("Updated: %s\n\nRestart Neovim?"):format(table.concat(updated, ", ")),
-          "&Yes\n&No",
-          2
-        )
-        if choice == 1 then
-          vim.cmd("restart")
+      -- vim.pack progress reports are vim.schedule_wrap'd, so defer until
+      -- after those callbacks drain from the queue
+      vim.schedule(function()
+        vim.cmd("echo ''")
+        if #updated > 0 then
+          local choice = vim.fn.confirm(
+            ("Updated: %s\n\nRestart Neovim?"):format(table.concat(updated, ", ")),
+            "&Yes\n&No",
+            2
+          )
+          if choice == 1 then
+            vim.cmd("restart")
+          end
+        else
+          vim.notify("All plugins up to date", vim.log.levels.INFO)
         end
-      else
-        vim.notify("All plugins up to date", vim.log.levels.INFO)
-      end
+      end)
     end)
   end,
 })

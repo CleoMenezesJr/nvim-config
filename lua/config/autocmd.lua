@@ -86,11 +86,24 @@ vim.api.nvim_create_autocmd("TermClose", {
   end,
 })
 
--- Auto-update plugins on startup; ask to restart if any were updated
+-- Auto-update plugins on startup at most once every 12 hours; ask to restart if any were updated
 vim.api.nvim_create_autocmd("VimEnter", {
   once = true,
   callback = function()
     vim.schedule(function()
+      -- Check if 12 hours have passed since the last update
+      local stamp_path = vim.fn.stdpath("cache") .. "/pack_last_update"
+      local INTERVAL = 12 * 60 * 60 -- 12 hours in seconds
+      local now = os.time()
+      local f = io.open(stamp_path, "r")
+      if f then
+        local last = tonumber(f:read("*a")) or 0
+        f:close()
+        if now - last < INTERVAL then
+          return -- Not enough time has passed; skip update
+        end
+      end
+
       local updated = {}
       local listener = vim.api.nvim_create_autocmd("PackChanged", {
         callback = function(ev)
@@ -104,6 +117,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
       -- vim.pack progress reports are vim.schedule_wrap'd, so defer until
       -- after those callbacks drain from the queue
       vim.schedule(function()
+        -- Record the timestamp of this update check
+        local sf = io.open(stamp_path, "w")
+        if sf then
+          sf:write(tostring(now))
+          sf:close()
+        end
         vim.cmd("echo ''")
         if #updated > 0 then
           local choice = vim.fn.confirm(

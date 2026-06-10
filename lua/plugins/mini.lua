@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup,
-  pattern = "codecompanion",
+  pattern = { "codecompanion", "avante" },
   callback = function(args)
     vim.b[args.buf].minimap_disable = true
     map_hidden_by_exclude = true

@@ -5,7 +5,7 @@
       "src": "https://github.com/f-person/auto-dark-mode.nvim"
     },
     "avante.nvim": {
-      "rev": "e0220d3b06da041b3bda158c89ae06b7b0e5d4f7",
+      "rev": "e7a167e5bf7de92d406e371d500c803603ec642f",
       "src": "https://github.com/yetone/avante.nvim"
     },
     "blink.cmp": {
@@ -13,11 +13,11 @@
       "src": "https://github.com/saghen/blink.cmp"
     },
     "claudecode.nvim": {
-      "rev": "8ec321279d3d9eddb0ce5f52d4b0d051dafb5743",
+      "rev": "7b8b7090c16f4151401a281741a4bf37050ebd26",
       "src": "https://github.com/coder/claudecode.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "6cbbcb4503430644f04ea5f087c8e2ea4cdc6f6e",
+      "rev": "ab04cf7955b4f3133983ea402f7f3fc5e7d6154b",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "friendly-snippets": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "mason-registry": {
-      "rev": "61a908b9718fc495ba8f03005ba0c755b7e7926b",
+      "rev": "6f0edff53db8e06679a620783f00ef80d4b798c1",
       "src": "https://github.com/mason-org/mason-registry"
     },
     "mason.nvim": {
@@ -69,7 +69,7 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "229b79051b380377664edc4cbd534930154921a1",
+      "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {

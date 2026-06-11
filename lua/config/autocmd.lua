@@ -86,6 +86,25 @@ vim.api.nvim_create_autocmd("TermClose", {
   end,
 })
 
+-- Kill claude code process on exit to prevent orphaned background processes
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = augroup,
+  callback = function()
+    -- Stop terminal jobs running claude
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.bo[buf].buftype == "terminal" then
+        local name = vim.api.nvim_buf_get_name(buf)
+        if name:find("claude") then
+          local job_id = vim.b[buf].terminal_job_id
+          if job_id then
+            vim.fn.jobstop(job_id)
+          end
+        end
+      end
+    end
+  end,
+})
+
 -- Auto-update plugins on startup at most once every 12 hours; ask to restart if any were updated
 vim.api.nvim_create_autocmd("VimEnter", {
   once = true,

@@ -17,7 +17,7 @@
       "src": "https://github.com/coder/claudecode.nvim"
     },
     "codecompanion.nvim": {
-      "rev": "ab04cf7955b4f3133983ea402f7f3fc5e7d6154b",
+      "rev": "c33f868c921bc877a3fb8b66673ff31cd98c3936",
       "src": "https://github.com/olimorris/codecompanion.nvim"
     },
     "friendly-snippets": {
@@ -25,7 +25,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gen.nvim": {
-      "rev": "c8e1f57",
+      "rev": "c8e1f574d4a3a839dde73a87bdc319a62ee1e559",
       "src": "https://github.com/David-Kunz/gen.nvim"
     },
     "gitsigns.nvim": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "mason-registry": {
-      "rev": "6f0edff53db8e06679a620783f00ef80d4b798c1",
+      "rev": "75031c362ea7941c7803ce063e0bd54d75596ca8",
       "src": "https://github.com/mason-org/mason-registry"
     },
     "mason.nvim": {
@@ -71,6 +71,10 @@
     "nvim-lspconfig": {
       "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-mcp": {
+      "rev": "0827b45db33a3b9f16c1d59467b08470e9c781aa",
+      "src": "https://github.com/linw1995/nvim-mcp"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",

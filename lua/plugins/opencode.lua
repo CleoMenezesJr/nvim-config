@@ -1,5 +1,9 @@
 -- REQUIRES (manual): opencode CLI installed and on PATH (already present at
 -- ~/.var/app/io.neovim.nvim/data/node/bin/opencode)
+-- REQUIRES (manual): lsof shim on PATH (~/.var/app/io.neovim.nvim/data/node/bin/lsof
+-- -> `flatpak-spawn --host lsof "$@"`) -- the Flatpak sandbox has no lsof, and
+-- opencode.nvim's server discovery shells out to it to find the ephemeral port
+-- of a running `opencode --port` process. See docs/superpowers/specs/2026-07-07-opencode-integration-design.md
 vim.pack.add({
   { src = "https://github.com/nickjvandyke/opencode.nvim", version = vim.version.range("*") },
 })

@@ -4,10 +4,6 @@
       "rev": "54058b4fe414bd64bd2904a6f8a63f1f14e3d8df",
       "src": "https://github.com/f-person/auto-dark-mode.nvim"
     },
-    "blink.cmp": {
-      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
-      "src": "https://github.com/saghen/blink.cmp"
-    },
     "claudecode.nvim": {
       "rev": "7b8b7090c16f4151401a281741a4bf37050ebd26",
       "src": "https://github.com/coder/claudecode.nvim"

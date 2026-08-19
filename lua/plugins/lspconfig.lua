@@ -1,5 +1,5 @@
 vim.pack.add({
-  "https://github.com/saghen/blink.cmp",
+  --   "https://github.com/saghen/blink.cmp",
   "https://github.com/neovim/nvim-lspconfig"
 })
 
@@ -44,7 +44,7 @@ local servers = {
 
 -- Setup servers
 for server, config in pairs(servers) do
-  config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+  -- config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
 
   vim.lsp.enable(server)
   if config then

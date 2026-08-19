@@ -57,12 +57,12 @@ vim.opt.redrawtime = 4000
 vim.opt.maxmempattern = 20000
 
 -- File handling
-vim.opt.swapfile = false    -- Don't create swap files
-vim.opt.undofile = true     -- Persistent undo
-vim.opt.updatetime = 300    -- Faster completion
-vim.opt.timeoutlen = 500    -- Key timeout duration
-vim.opt.ttimeoutlen = 0     -- Key code timeout
-vim.opt.autoread = true     -- Auto reload files changed outside vim
+vim.opt.swapfile = false -- Don't create swap files
+vim.opt.undofile = true  -- Persistent undo
+vim.opt.updatetime = 300 -- Faster completion
+vim.opt.timeoutlen = 500 -- Key timeout duration
+vim.opt.ttimeoutlen = 0  -- Key code timeout
+vim.opt.autoread = true  -- Auto reload files changed outside vim
 
 -- Behavior settings
 vim.opt.backspace = "indent,eol,start"  -- Better backspace behavior
@@ -103,9 +103,9 @@ vim.opt.guicursor =
 
 
 -- Folding settings
-vim.opt.foldmethod = "expr"                     -- Use expression for folding
+vim.opt.foldmethod = "expr"                          -- Use expression for folding
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding
-vim.opt.foldlevel = 99                          -- Start with all folds open
+vim.opt.foldlevel = 99                               -- Start with all folds open
 
 -- Split behavior
 vim.opt.splitbelow = true -- Horizontal splits go below

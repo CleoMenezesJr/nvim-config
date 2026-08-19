@@ -160,13 +160,109 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
-
 -- LSP auto completion
+local kind_icons = {
+  Text          = '󰉿',
+  Method        = '󰆧',
+  Function      = '󰊕',
+  Constructor   = '',
+  Field         = '󰜢',
+  Variable      = '󰀫',
+  Class         = '󰠱',
+  Interface     = '',
+  Module        = '',
+  Property      = '󰜢',
+  Unit          = '󰑭',
+  Value         = '󰎠',
+  Enum          = '',
+  Keyword       = '󰌋',
+  Snippet       = '',
+  Color         = '󰏘',
+  File          = '󰈙',
+  Reference     = '󰈇',
+  Folder        = '󰉋',
+  EnumMember    = '',
+  Constant      = '󰏿',
+  Struct        = '󰙅',
+  Event         = '',
+  Operator      = '󰆕',
+  TypeParameter = '',
+}
+
+local kind_hl = {
+  Text          = 'String',
+  Method        = 'Function',
+  Function      = 'Function',
+  Constructor   = 'Special',
+  Field         = '@variable.member',
+  Variable      = '@variable',
+  Class         = 'Type',
+  Interface     = 'Type',
+  Module        = '@module',
+  Property      = '@property',
+  Unit          = 'Number',
+  Value         = 'Number',
+  Enum          = 'Type',
+  Keyword       = 'Keyword',
+  Snippet       = 'Conceal',
+  Color         = 'Special',
+  File          = 'Directory',
+  Reference     = '@markup.link',
+  Folder        = 'Directory',
+  EnumMember    = 'Constant',
+  Constant      = 'Constant',
+  Struct        = 'Type',
+  Event         = 'Special',
+  Operator      = 'Operator',
+  TypeParameter = 'Type',
+}
+
+local kind_map = {
+  [1] = "Text",
+  [2] = "Method",
+  [3] = "Function",
+  [4] = "Constructor",
+  [5] = "Field",
+  [6] = "Variable",
+  [7] = "Class",
+  [8] = "Interface",
+  [9] = "Module",
+  [10] = "Property",
+  [11] = "Unit",
+  [12] = "Value",
+  [13] = "Enum",
+  [14] = "Keyword",
+  [15] = "Snippet",
+  [16] = "Color",
+  [17] = "File",
+  [18] = "Reference",
+  [19] = "Folder",
+  [20] = "EnumMember",
+  [21] = "Constant",
+  [22] = "Struct",
+  [23] = "Event",
+  [24] = "Operator",
+  [25] = "TypeParameter",
+}
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client ~= nil and client:supports_method("textDocument/completion") then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+      vim.lsp.completion.enable(true, ev.data.client_id, ev.buf, {
+        autotrigger = true,
+        convert = function(item)
+          local kind = vim.lsp.protocol.CompletionItemKind[item.kind] or 'Text'
+          local icon = kind_icons[kind] or ''
+          local label = item.label or ''
+          return {
+            abbr = icon .. ' ' .. label,
+            kind_text = kind,
+            kind = kind_map[item.kind] or item.kind,
+            abbr_hlgroup = kind_hl[kind]
+          }
+        end,
+      })
     end
   end,
 })

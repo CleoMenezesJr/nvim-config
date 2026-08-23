@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
   callback = function(ev)
     local value = ev.data.params.value
     if value.kind ~= "end" then
-      Lsp_progress = "%#StlWorkspace# " .. value.title .. " " .. value.percentage .. "%%" .. " %*"
+      Lsp_progress = "%#StlWorkspace#  " .. value.title .. " " .. value.percentage .. "%%" .. " %*"
     else
       Lsp_progress = ""
     end
@@ -73,7 +73,7 @@ function _G._statusline()
       mode ..
       " %*" ..
       get_git() ..
-      path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "  " .. filetype .. "  " .. "%l:%c"
+      path .. modified_icon .. Lsp_progress .. "%=" .. diag .. "  " .. filetype .. "  " .. "%l:%c"
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {

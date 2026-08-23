@@ -45,7 +45,7 @@ local function get_git()
   local removed = dict.removed and dict.removed > 0 and ("%#DiagnosticError# -" .. dict.removed .. "%*") or ""
 
   local diff = added .. changed .. removed
-  return branch and "%#StlGit# " .. branch .. diff .. (diff and "︱") .. "%*" or ""
+  return branch and "%#StlGit# " .. branch .. diff .. (diff and "  ") .. "%*" or ""
 end
 
 function _G._statusline()
@@ -73,7 +73,7 @@ function _G._statusline()
       mode ..
       " %*" ..
       get_git() ..
-      path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "︱" .. filetype .. " ︱" .. "%l:%c"
+      path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "  " .. filetype .. "  " .. "%l:%c"
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {

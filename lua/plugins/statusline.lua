@@ -45,7 +45,7 @@ local function get_git()
   local removed = dict.removed and dict.removed > 0 and ("%#DiagnosticError# -" .. dict.removed .. "%*") or ""
 
   local diff = added .. changed .. removed
-  return branch and "%#StlGit# " .. branch .. diff .. (diff and "  ") .. "%*" or ""
+  return branch and "%#StlGit# " .. branch .. "%*" .. diff .. (string.len(diff) > 0 and "  " or " ") or ""
 end
 
 function _G._statusline()
@@ -63,11 +63,11 @@ function _G._statusline()
   end
 
 
-  local is_modified = vim.api.nvim_get_option_value("modified", { buf = 0 })
+  local is_modified   = vim.api.nvim_get_option_value("modified", { buf = 0 })
   local modified_icon = is_modified and " " or ""
 
-  local filetype_icon  = require('nvim-web-devicons').get_icon(vim.b.rel_path or "%f", vim.bo.filetype, { default = true })
-  local filetype = filetype_icon .. " " .. vim.bo.filetype
+  local filetype_icon = require('nvim-web-devicons').get_icon(vim.b.rel_path or "%f", vim.bo.filetype, { default = true })
+  local filetype      = filetype_icon .. " " .. vim.bo.filetype
 
   return "%#StlMode# " ..
       mode ..

@@ -19,7 +19,12 @@ vim.keymap.set("n", "-", "<CMD>lua MiniFiles.open()<CR>", { desc = "Open Files" 
 -- MINI PAIRS
 -- ============================================================================
 
-require('mini.pairs').setup()
+require('mini.pairs').setup({
+  options = {
+    permanent_delete = false,
+    use_as_default_explorer = false,
+  },
+})
 
 -- ============================================================================
 -- MINI MAP

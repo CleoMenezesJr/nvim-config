@@ -35,9 +35,9 @@ vim.api.nvim_create_autocmd("LspProgress", {
 })
 
 function _G._statusline()
-  local mode = modes[vim.fn.mode()] or vim.fn.mode():upper()
-  local branch = vim.b.git_branch and "%#StlGit# " .. vim.b.git_branch .. " %*" or ""
-  local path = vim.b.rel_path or "%f"
+  local mode = " " .. modes[vim.fn.mode()] or vim.fn.mode():upper()
+  local branch = vim.b.git_branch and "%#StlGit# " .. " " .. vim.b.git_branch .. " %*" or ""
+  local path = " " .. (vim.b.rel_path or "%f")
 
   local diag = ""
   local counts = vim.diagnostic.count(0) or {}
@@ -49,11 +49,15 @@ function _G._statusline()
     end
   end
 
+
+  local is_modified = vim.api.nvim_get_option_value("modified", { buf = 0 })
+  local modified_icon = is_modified and "  " or ""
+
   return "%#StlMode# " ..
       mode ..
       " %*" ..
       branch ..
-      " " .. path .. " " .. Lsp_progress .. "%=" .. diag .. vim.bo.filetype .. " %l:%c"
+      " " .. path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "︱" .. vim.bo.filetype .. " ︱" .. "%l:%c"
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {

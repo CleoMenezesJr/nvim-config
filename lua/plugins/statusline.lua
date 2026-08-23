@@ -34,10 +34,23 @@ vim.api.nvim_create_autocmd("LspProgress", {
   end,
 })
 
+local function get_git()
+  local dict = vim.b.gitsigns_status_dict
+  if not dict then
+    return ""
+  end
+  local branch = dict.head and (" " .. dict.head .. " ") or ""
+  local added = dict.added and dict.added > 0 and ("%#DiagnosticInfo# +" .. dict.added .. "%*") or ""
+  local changed = dict.changed and dict.changed > 0 and ("%#DiagnosticWarn# ~" .. dict.changed .. "%*") or ""
+  local removed = dict.removed and dict.removed > 0 and ("%#DiagnosticError# -" .. dict.removed .. "%*") or ""
+
+  local diff = added .. changed .. removed
+  return branch and "%#StlGit# " .. branch .. diff .. "%*"  or ""
+end
+
 function _G._statusline()
-  local mode = " " .. modes[vim.fn.mode()] or vim.fn.mode():upper()
-  local branch = vim.b.git_branch and "%#StlGit# " .. " " .. vim.b.git_branch .. " %*" or ""
-  local path = " " .. (vim.b.rel_path or "%f")
+  local mode = " " .. vim.fn.mode() and modes[vim.fn.mode()] or ""
+  local path = (vim.b.rel_path and "︱ ") .. (vim.b.rel_path or "%f")
 
   local diag = ""
   local counts = vim.diagnostic.count(0) or {}
@@ -51,13 +64,13 @@ function _G._statusline()
 
 
   local is_modified = vim.api.nvim_get_option_value("modified", { buf = 0 })
-  local modified_icon = is_modified and "  " or ""
+  local modified_icon = is_modified and " " or ""
 
   return "%#StlMode# " ..
       mode ..
       " %*" ..
-      branch ..
-      " " .. path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "︱" .. vim.bo.filetype .. " ︱" .. "%l:%c"
+      get_git() ..
+      path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "︱" .. vim.bo.filetype .. " ︱" .. "%l:%c"
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {

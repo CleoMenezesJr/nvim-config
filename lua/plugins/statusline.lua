@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
 local function get_git()
   local dict = vim.b.gitsigns_status_dict
   if not dict then
-    return ""
+    return " "
   end
   local branch = dict.head and (" " .. dict.head .. " ") or ""
   local added = dict.added and dict.added > 0 and ("%#DiagnosticInfo# +" .. dict.added .. "%*") or ""
@@ -45,12 +45,12 @@ local function get_git()
   local removed = dict.removed and dict.removed > 0 and ("%#DiagnosticError# -" .. dict.removed .. "%*") or ""
 
   local diff = added .. changed .. removed
-  return branch and "%#StlGit# " .. branch .. diff .. "%*" or ""
+  return branch and "%#StlGit# " .. branch .. diff .. (diff and "︱") .. "%*" or ""
 end
 
 function _G._statusline()
   local mode = " " .. (vim.fn.mode() and modes[vim.fn.mode()] or "")
-  local path = ((string.len(vim.b.rel_path or "%f") ~= 0) and "︱ " or "") .. (vim.b.rel_path or "%f")
+  local path = ((string.len(vim.b.rel_path or "%f") ~= 0) and " " or "") .. (vim.b.rel_path or "%f")
 
   local diag = ""
   local counts = vim.diagnostic.count(0) or {}

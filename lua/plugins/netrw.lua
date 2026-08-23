@@ -1,9 +1,12 @@
-vim.g.netrw_liststyle = 3    -- treeview
--- vim.g.netrw_banner = 0       --hide the top banner
-vim.g.netrw_winsize = 20     -- fix the left split width
-vim.g.netrw_browse_split = 0 -- open files in previous window
-vim.g.netrw_altfile = 1      -- keep the alternative file correct
-vim.g.netrw_hide = 0
+-- vim.g.netrw_banner = 0                  --hide the top banner
+vim.g.netrw_liststyle = 3               -- treeview
+vim.g.netrw_winsize = 20                -- fix the left split width
+vim.g.netrw_browse_split = 4            -- open files in previous window
+vim.g.netrw_altfile = 1                 -- keep the alternative file correct
+vim.g.netrw_hide = 0                    -- show all files
+vim.g.netrw_keepdir = 0                 -- Keep the current directory and the browsing directory synced.
+vim.g.netrw_sort_sequence = [[[\/]$,*]] -- Show directories first (sorting)
+vim.g.netrw_sizestyle = "H"             -- Human-readable files sizes
 
 -- netrw's built-in `%` opens new files in the netrw window instead of
 -- respecting `netrw_browse_split`. Override it to open in the previous window.

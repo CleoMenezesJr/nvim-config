@@ -65,12 +65,12 @@ vim.opt.ttimeoutlen = 0  -- Key code timeout
 vim.opt.autoread = true  -- Auto reload files changed outside vim
 
 -- Behavior settings
-vim.opt.backspace = "indent,eol,start"  -- Better backspace behavior
-vim.opt.iskeyword:append("-")           -- Treat dash as part of word
-vim.opt.path:append("**")               -- include subdirectories in search
-vim.opt.mouse = "a"                     -- Enable mouse support
-vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
-vim.o.confirm = true                    -- Prevent make quit without save
+vim.opt.backspace = "indent,eol,start" -- Better backspace behavior
+vim.opt.iskeyword:append("-")          -- Treat dash as part of word
+vim.opt.path:append("**")              -- include subdirectories in search
+vim.opt.mouse = "a"                    -- Enable mouse support
+vim.opt.clipboard = "unnamedplus"      -- Use system clipboard
+vim.o.confirm = true                   -- Prevent make quit without save
 
 -- UI2: no more press Enter
 require("vim._core.ui2").enable {

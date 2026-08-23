@@ -3,7 +3,6 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.files",
   "https://github.com/nvim-mini/mini.clue",
   "https://github.com/nvim-mini/mini.pairs",
-  "https://github.com/nvim-mini/mini.statusline",
   "https://github.com/nvim-mini/mini.map"
 })
 
@@ -41,16 +40,6 @@ local map_hidden_by_exclude = false
 -- relying on WinEnter to see the flag in time.
 vim.api.nvim_create_autocmd("TermOpen", {
   group = augroup,
-  callback = function(args)
-    vim.b[args.buf].minimap_disable = true
-    map_hidden_by_exclude = true
-    MiniMap.close()
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup,
-  pattern = { "codecompanion" },
   callback = function(args)
     vim.b[args.buf].minimap_disable = true
     map_hidden_by_exclude = true

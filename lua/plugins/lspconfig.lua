@@ -36,6 +36,12 @@ local servers = {
     end,
     filetypes = { "vue", "html" }
   },
+  emmet_language_server = {
+    init_options = {
+      showExpandedAbbreviation = "always",
+      showAbbreviationSuggestions = true,
+    },
+  },
   ruff = {},
   docker_language_server = {
     filetypes = { 'dockerfile', 'yaml.docker-compose' },

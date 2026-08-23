@@ -50,7 +50,7 @@ end
 
 function _G._statusline()
   local mode = " " .. (vim.fn.mode() and modes[vim.fn.mode()] or "")
-  local path = ((string.len(vim.b.rel_path) ~= 0) and "︱ " or "") .. (vim.b.rel_path or "%f")
+  local path = ((string.len(vim.b.rel_path or "%f") ~= 0) and "︱ " or "") .. (vim.b.rel_path or "%f")
 
   local diag = ""
   local counts = vim.diagnostic.count(0) or {}

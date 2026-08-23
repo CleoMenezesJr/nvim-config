@@ -43,8 +43,12 @@ local servers = {
 }
 
 -- Setup servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 for server, config in pairs(servers) do
   -- config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+  config.capabilities = capabilities
 
   vim.lsp.enable(server)
   if config then

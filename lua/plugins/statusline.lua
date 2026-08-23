@@ -66,11 +66,14 @@ function _G._statusline()
   local is_modified = vim.api.nvim_get_option_value("modified", { buf = 0 })
   local modified_icon = is_modified and " " or ""
 
+  local filetype_icon  = require('nvim-web-devicons').get_icon(vim.b.rel_path or "%f", vim.bo.filetype, { default = true })
+  local filetype = filetype_icon .. " " .. vim.bo.filetype
+
   return "%#StlMode# " ..
       mode ..
       " %*" ..
       get_git() ..
-      path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "︱" .. vim.bo.filetype .. " ︱" .. "%l:%c"
+      path .. modified_icon .. " " .. Lsp_progress .. "%=" .. diag .. "︱" .. filetype .. " ︱" .. "%l:%c"
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {

@@ -119,6 +119,7 @@ require('config.keymap')
 require('config.autocmd')
 
 require('plugins.theme')
+require('plugins.statusline')
 require('plugins.lazydev')
 require('plugins.nvim-treesitter')
 require('plugins.mini')

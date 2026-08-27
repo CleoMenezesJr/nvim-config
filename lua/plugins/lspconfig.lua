@@ -72,7 +72,7 @@ vim.diagnostic.config({
 })
 
 -- A set of options for better completion experience. See `:h completeopt`
-vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+vim.opt.completeopt = { "menuone", "noinsert", "preinsert", "popup" }
 
 -- Hides the ins-completion-menu messages. See `:h shm-c`
 vim.opt.shortmess:append "c"

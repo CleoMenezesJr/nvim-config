@@ -48,7 +48,7 @@ local function get_git()
   return branch and "%#StlGit# " .. branch .. "%*" .. diff .. (string.len(diff) > 0 and "  " or " ") or ""
 end
 
-function _G._statusline()
+function _G._statusline(focused)
   local mode = " " .. (vim.fn.mode() and modes[vim.fn.mode()] or "")
   local path = ((string.len(vim.b.rel_path or "%f") ~= 0) and " " or "") .. (vim.b.rel_path or "%f")
 
@@ -63,17 +63,23 @@ function _G._statusline()
   end
 
 
-  local is_modified   = vim.api.nvim_get_option_value("modified", { buf = 0 })
+  local is_modified = vim.api.nvim_get_option_value("modified", { buf = 0 })
   local modified_icon = is_modified and " " or ""
 
   local filetype_icon = require('nvim-web-devicons').get_icon(vim.b.rel_path or "%f", vim.bo.filetype, { default = true })
-  local filetype      = filetype_icon .. " " .. vim.bo.filetype
+  local filetype = filetype_icon .. " " .. vim.bo.filetype
 
-  return "%#StlMode# " ..
-      mode ..
-      " %*" ..
-      get_git() ..
-      path .. modified_icon .. lsp_progress .. "%=" .. diag .. "  " .. filetype .. "  " .. "%l:%c"
+
+  if focused then
+    return "%#StlMode# " ..
+        mode ..
+        " %*" ..
+        get_git() ..
+        path .. modified_icon .. lsp_progress .. "%=" .. diag .. "  " .. filetype .. "  " .. "%l:%c"
+  else
+    return "%*" ..
+        path .. modified_icon .. lsp_progress .. "%=" .. diag .. "  " .. filetype .. "  " .. "%l:%c"
+  end
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -95,4 +101,5 @@ vim.api.nvim_create_autocmd("DiagnosticChanged", {
   end,
 })
 
-vim.o.statusline = "%!v:lua._statusline()"
+vim.go.statusline =
+"%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('_statusline(true)') : luaeval('_statusline(false)')%}"
